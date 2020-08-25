@@ -1,0 +1,5 @@
+{% for prefix in prefixes %}
+ip prefix-list {{prefix_list_name}} deny {{prefix}}
+{% endfor %}
+router bgp {{as_num}}
+ neighbor {{neigh_ip}} prefix-list {{prefix_list_name}} in
