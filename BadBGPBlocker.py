@@ -67,5 +67,7 @@ config['neigh_ip'] = bgp_neighbor_ip
 env = Environment(loader = FileSystemLoader(''), trim_blocks=True, lstrip_blocks=True)
 template = env.get_template('BGPtemplate.j2')
 # print(config)
+print()
+print('BGP config to deploy:')
 print(template.render(config))
 
