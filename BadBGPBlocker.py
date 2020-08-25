@@ -26,10 +26,13 @@ def get_prefixes_per_asn(asn):
   else: myResponse.raise_for_status()
 
 while True:
+  try:
     bad_subnet = input ('Please enter the offending IPv4 subnet: ')
     verifyip = ipaddress.IPv4Network(bad_subnet)
     if verifyip.prefixlen <= 24 and verifyip.is_global:
       break
+  except Exception as e:
+    print(e)
 bad_asn = get_as()
 print ()
 print (f'The ASN this subnet originates is found to be: {bad_asn}') 
