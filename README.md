@@ -25,7 +25,7 @@ source venv/bin/activate
 
 ## Installation
 
-The two files (BadBGPBlocker.py and BGPTemplate.j2) should be saved in the same folder
+The two files (BadBGPBlocker.py and BGPTemplate.j2) should be saved in the same folder.
 Also the following python libraries should be installed
 ```
 pip install requests
