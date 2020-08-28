@@ -73,19 +73,46 @@ The other IPv4 prefixes associated with this ASN are:
 81.27.64.0/19
 
 Did you want to only block 192.160.10.0/24? or all IPv4 Prefixes?
-("1" for one, "2" for all, or "q" to quit):1
-What is the Prefix List name you want to use? deny-ip-list
+("1" for one, "2" for all, or "q" to quit):2
+What is the Prefix List name you want to use? deny-list
 What is your BGP AS number? 65000
 What is the BGP neighbor IP address? 10.1.1.1
 
 BGP config to deploy:
-ip prefix-list deny-ip-list deny 192.160.10.0/24
-ip prefix-list deny-ip-list permit 0.0.0.0/0 le 32
+ip prefix-list deny-list deny 185.229.20.0/23
+ip prefix-list deny-list deny 195.210.54.0/23
+ip prefix-list deny-list deny 91.212.108.0/24
+ip prefix-list deny-list deny 195.135.208.0/22
+ip prefix-list deny-list deny 109.104.96.0/19
+ip prefix-list deny-list deny 185.174.224.0/24
+ip prefix-list deny-list deny 91.206.118.0/24
+ip prefix-list deny-list deny 185.5.88.0/22
+ip prefix-list deny-list deny 185.55.252.0/24
+ip prefix-list deny-list deny 5.133.184.0/21
+ip prefix-list deny-list deny 179.63.32.0/20
+ip prefix-list deny-list deny 91.206.118.0/23
+ip prefix-list deny-list deny 193.93.84.0/22
+ip prefix-list deny-list deny 193.105.51.0/24
+ip prefix-list deny-list deny 62.69.143.0/24
+ip prefix-list deny-list deny 83.142.64.0/21
+ip prefix-list deny-list deny 194.50.54.0/24
+ip prefix-list deny-list deny 82.197.64.0/19
+ip prefix-list deny-list deny 31.3.208.0/20
+ip prefix-list deny-list deny 179.63.0.0/20
+ip prefix-list deny-list deny 192.160.10.0/24
+ip prefix-list deny-list deny 37.58.24.0/21
+ip prefix-list deny-list deny 85.159.88.0/21
+ip prefix-list deny-list deny 91.206.119.0/24
+ip prefix-list deny-list deny 185.229.22.0/23
+ip prefix-list deny-list deny 84.45.0.0/17
+ip prefix-list deny-list deny 193.105.172.0/24
+ip prefix-list deny-list deny 81.27.64.0/19
+ip prefix-list deny-list permit 0.0.0.0/0 le 32
 router bgp 65000
- neighbor 10.1.1.1 prefix-list deny-ip-list in
+ neighbor 10.1.1.1 prefix-list deny-list in
 ```
 
 ## About Me
 I am a Systems Architect with Cisco focusing on Automation and Programmability.
 
-**twitter  / linkedin / github**
+**<a href="https://www.linkedin.com/in/patrickrockholz/" rel="nofollow">LinkedIn</a> / <a href="https://twitter.com/patrickrockholz" rel="nofollow">Twitter</a>**
