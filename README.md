@@ -4,7 +4,7 @@
 
 ## What does this code do
 
-**This public repo contains python code that can be used to block one or more IPv4 subnets from BGP neighborships**
+This public repo contains python code that can be used to block one or more IPv4 subnets from BGP neighborships
 
 
 ## What does it solve
