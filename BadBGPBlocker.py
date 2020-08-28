@@ -1,3 +1,4 @@
+import sys
 import ipaddress
 import json
 import requests
@@ -45,7 +46,7 @@ while True:
   try:
     one_all_or_none = input (f'Did you want to only block {bad_subnet}? or all IPv4 Prefixes?\n("1" for one, "2" for all, or "q" to quit):')
     if one_all_or_none.lower() == 'q':
-      break
+      sys.exit()
     elif one_all_or_none == '1':
       config['prefixes'] = [bad_subnet]
       break
@@ -69,7 +70,7 @@ while True:
 config['neigh_ip'] = bgp_neighbor_ip
 env = Environment(loader = FileSystemLoader(''), trim_blocks=True, lstrip_blocks=True)
 template = env.get_template('BGPtemplate.j2')
-# print(config)
+
 print()
 print('BGP config to deploy:')
 print(template.render(config))
