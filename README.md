@@ -28,8 +28,7 @@ source venv/bin/activate
 The two files (BadBGPBlocker.py and BGPTemplate.j2) should be saved in the same folder.
 Also the following python libraries should be installed
 ```
-pip install requests
-pip install jinja2
+pip install -r requirements.txt
 ```
 ## Example Output
 By running this script, you will be asked to input an IPv4 prefix that is the offender.
@@ -37,7 +36,7 @@ Once retrieved, you will be displayed the BGP AS number where the prefix orignin
 You will then be prompted to choose to block only the originally inputed prefix or all prefixes associated with the ASN.
 
 ```
-(workingdir) parockho@PAROCKHO-M-P8EP BadBGPBlocker % python BadBGPBlocker.py        
+(workingdir) BadBGPBlocker% python BadBGPBlocker.py        
 Please enter the offending IPv4 subnet: 192.160.10.0/24
 
 The ASN this subnet originates is found to be: 25577
