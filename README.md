@@ -9,7 +9,9 @@ This public repo contains python code that can be used to block one or more IPv4
 
 ## What does it solve
 
-This code will generate Cisco IOS/IOS-XE CLI configuration to deny IPv4 prefixes from populating BGP routes
+This code will generate Cisco IOS/IOS-XE CLI configuration to deny IPv4 prefixes from populating BGP routes by retreiving data from BGPView API. BGPView is a simple API allowing consumers to view all sort of analytics data about the current state and structure of the internet.
+This code can be tested using the [IOS XE on CSR Latest Code AlwaysOn](https://devnetsandbox.cisco.com/RM/Diagram/Index/38ded1f0-16ce-43f2-8df5-43a40ebf752e?diagramType=Topology) DevNet Sandbox.
+
 
 ## Python Environment Setup
 
@@ -24,12 +26,10 @@ source venv/bin/activate
 ```
 
 ## Installation
-
 The two files (BadBGPBlocker.py and BGPTemplate.j2) should be saved in the same folder.
 Also the following python libraries should be installed
 ```
-pip install requests
-pip install jinja2
+pip install -r requirements.txt
 ```
 ## Example Output
 By running this script, you will be asked to input an IPv4 prefix that is the offender.
@@ -37,7 +37,7 @@ Once retrieved, you will be displayed the BGP AS number where the prefix orignin
 You will then be prompted to choose to block only the originally inputed prefix or all prefixes associated with the ASN.
 
 ```
-(workingdir) parockho@PAROCKHO-M-P8EP BadBGPBlocker % python BadBGPBlocker.py        
+(workingdir) BadBGPBlocker% python BadBGPBlocker.py        
 Please enter the offending IPv4 subnet: 192.160.10.0/24
 
 The ASN this subnet originates is found to be: 25577
