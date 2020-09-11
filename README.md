@@ -109,7 +109,8 @@ ip prefix-list deny-list deny 193.105.172.0/24
 ip prefix-list deny-list deny 81.27.64.0/19
 ip prefix-list deny-list permit 0.0.0.0/0 le 32
 router bgp 65000
- neighbor 10.1.1.1 prefix-list deny-list in
+ address-family ipv4 unicast
+  neighbor 10.1.1.1 prefix-list deny-list in
 ```
 
 ## About Me
