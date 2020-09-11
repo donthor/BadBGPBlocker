@@ -3,4 +3,5 @@ ip prefix-list {{prefix_list_name}} deny {{prefix}}
 {% endfor %}
 ip prefix-list {{prefix_list_name}} permit 0.0.0.0/0 le 32
 router bgp {{as_num}}
- neighbor {{neigh_ip}} prefix-list {{prefix_list_name}} in
+ address-family ipv4 unicast
+  neighbor {{neigh_ip}} prefix-list {{prefix_list_name}} in
