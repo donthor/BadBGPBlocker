@@ -3,28 +3,44 @@ import ipaddress
 import json
 import requests
 from jinja2 import Environment, FileSystemLoader
+import env_var
 
 asforprefix_baseurl = 'https://api.bgpview.io/prefix/'
 prefixesforas_baseurl = 'http://stat.ripe.net/data/announced-prefixes/data.json?preferred_version=1.1&resource='
 bad_subnet = ''
 config = {}
+token = env_var.INVESTIGATE_TOKEN
+headers = {'Authorization': 'Bearer ' + token}
 
-def get_as():
+def get_as(bad_subnet):
   TheResponse = requests.get(asforprefix_baseurl + bad_subnet)
   data = json.loads(TheResponse.content)
   return data['data']['asns'][0]['asn']
   
 def get_prefixes_per_asn(asn):
-  myResponse = requests.get(prefixesforas_baseurl+asn)
+  myResponse = requests.get(prefixesforas_baseurl + asn)
   if(myResponse.ok):
     jData = json.loads(myResponse.content)
     prefix_list = []
     for data in jData['data']['prefixes']:
       if '.' in data['prefix']:  
-          # prefix_list += f"IPv4 Prefix: {data['prefix']}\n"
           prefix_list.append(data['prefix'])
     return prefix_list
   else: myResponse.raise_for_status()
+
+def umbrella_investigate(bad_asn, headers):
+  response = requests.get('https://api.bgpview.io/asn/' + bad_asn)
+  print ('''
+  Per the Umbrella Investigate API, the status will be one of the following
+  "-1" if the domain is believed to be malicious, 
+  "1" if the domain is believed to be benign, 
+  "0" if it hasn't been classified yet
+  ''')
+  response_body = response.json()["data"]["website"][8:]
+  print (f'ASN {bad_asn} appears to be associated with {response_body}')
+  response = requests.get('https://investigate.api.umbrella.com/domains/score/' + response_body, headers=headers)
+  reply_body = response.json()[response_body]
+  print (f'{response_body} shows a Score of '  + reply_body)
 
 while True:
   try:
@@ -34,13 +50,17 @@ while True:
       break
   except Exception as e:
     print(e)
-bad_asn = get_as()
+bad_asn = get_as(bad_subnet)
 print ()
 print (f'The ASN this subnet originates is found to be: {bad_asn}') 
 all_the_prefixes = get_prefixes_per_asn(str(bad_asn))
 print ()
 print ('The other IPv4 prefixes associated with this ASN are:')
 print (*all_the_prefixes, sep = '\n')
+print ()
+further_investigation = input('Do you want to use Umbrella Investigate API to try and find the Domain status? ')
+if further_investigation.lower() == 'y':
+  umbrella_investigate(str(bad_asn), headers)
 print ()
 while True:
   try:
