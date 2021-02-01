@@ -1,6 +1,6 @@
 # BadBGPBlocker
 
-Now Featured on The Cisco Learning Network!\n
+Now Featured on The Cisco Learning Network!
 https://learningnetwork.cisco.com/s/question/0D53i00000xmv3F/blocking-bad-bgp-neighbors-with-python-with-patrick-rockholz
 
 ## What does this code do
