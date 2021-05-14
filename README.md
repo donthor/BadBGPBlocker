@@ -116,6 +116,6 @@ router bgp 65000
 ```
 
 ## About Me
-I am a Systems Architect with Cisco focusing on Automation and Programmability.
+I am a Cisco Systems Architect focusing on Automation and Programmability.
 
 **<a href="https://www.linkedin.com/in/patrickrockholz/" rel="nofollow">LinkedIn</a> / <a href="https://twitter.com/patrickrockholz" rel="nofollow">Twitter</a>**
